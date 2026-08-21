@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDLC Coding"
+  short_description: "Implement traceable production-quality software"
+  default_prompt: "Use $sdlc-coding to implement the approved software requirements and design as working, tested, secure, and traceable code."
