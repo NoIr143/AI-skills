@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDLC Design"
+  short_description: "Design architecture, UI, data, and interfaces"
+  default_prompt: "Use $sdlc-design to map system architecture, user interfaces, database models, and integration contracts from the approved requirements baseline."
