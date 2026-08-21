@@ -12,6 +12,11 @@
       "name": "sdlc-planning",
       "path": "skills/sdlc-planning",
       "description": "Define project scope, measurable goals, delivery approach, team roles, estimates, risks, and readiness using recognized SDLC standards."
+    },
+    {
+      "name": "sdlc-analysis",
+      "path": "skills/sdlc-analysis",
+      "description": "Gather, analyze, validate, and document detailed functional and quality requirements in a traceable Software Requirements Specification."
     }
   ]
 }
