@@ -64,7 +64,7 @@ python3 scripts/validate.py
 
 ## Install and use in ChatGPT Web — Work mode
 
-ChatGPT Web loads these skills through an installed plugin. It does not install a private GitHub repository URL directly from the Work composer.
+ChatGPT Web loads these skills through an installed plugin. It does not install a GitHub repository URL directly from the Work composer.
 
 ### Private workspace distribution
 
@@ -78,7 +78,7 @@ codex plugin marketplace add https://github.com/NoIr143/AI-skills.git --ref main
 3. As a ChatGPT workspace admin, open [ChatGPT Plugins](https://chatgpt.com/plugins), select **Personal**, open the **AI Skills** menu, choose **Publish**, and select the workspace roles that may use it.
 4. Start a new ChatGPT Web **Work** chat, type `@`, and choose a bundled skill such as `@sdlc-planning`.
 
-Publishing this way keeps the plugin inside the selected ChatGPT workspace. It does not publish the private repository to the public Plugins Directory. Workspace publishing requires admin permission and may be disabled by workspace policy.
+Publishing this way keeps the plugin inside the selected ChatGPT workspace. It does not make the workspace plugin publicly discoverable in the Plugins Directory. Workspace publishing requires admin permission and may be disabled by workspace policy.
 
 ### Skills-only upload package
 
