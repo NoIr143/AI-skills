@@ -1,6 +1,6 @@
 # AI Skills
 
-One private, installable skill collection for ChatGPT Work, Codex, and Claude Code. Each portable skill lives in `skills/<skill-name>/` and has a single `SKILL.md` source of truth.
+One network-installable skill collection for ChatGPT Work, Codex, and Claude Code. Each portable skill lives in `skills/<skill-name>/` and has a single `SKILL.md` source of truth.
 
 ## Cross-platform model
 
@@ -64,21 +64,21 @@ python3 scripts/validate.py
 
 ## Install and use in ChatGPT Web — Work mode
 
-ChatGPT Web loads these skills through an installed plugin. It does not install a private GitHub repository URL directly from the Work composer.
+ChatGPT Web loads these skills through an installed plugin. It does not install a GitHub repository URL directly from the Work composer.
 
 ### Private workspace distribution
 
-1. On a computer whose Git credentials can access this private repository, add the marketplace and install the plugin through Codex CLI or the ChatGPT desktop plugin browser:
+1. Add the public GitHub repository as a marketplace:
 
 ```bash
-codex plugin marketplace add NoIr143/AI-skills --ref main
-codex plugin add ai-skills@noir143-ai-skills
+codex plugin marketplace add https://github.com/NoIr143/AI-skills.git --ref main
 ```
 
-2. As a ChatGPT workspace admin, open [ChatGPT Plugins](https://chatgpt.com/plugins), select **Personal**, open the **AI Skills** menu, choose **Publish**, and select the workspace roles that may use it.
-3. Start a new ChatGPT Web **Work** chat, type `@`, and choose a bundled skill such as `@sdlc-planning`.
+2. Start Codex, enter `/plugins`, choose **NoIr143 AI Skills**, and install **AI Skills**. You can also install it from the ChatGPT desktop Plugins Directory.
+3. As a ChatGPT workspace admin, open [ChatGPT Plugins](https://chatgpt.com/plugins), select **Personal**, open the **AI Skills** menu, choose **Publish**, and select the workspace roles that may use it.
+4. Start a new ChatGPT Web **Work** chat, type `@`, and choose a bundled skill such as `@sdlc-planning`.
 
-Publishing this way keeps the plugin inside the selected ChatGPT workspace. It does not publish the private repository to the public Plugins Directory. Workspace publishing requires admin permission and may be disabled by workspace policy.
+Publishing this way keeps the plugin inside the selected ChatGPT workspace. It does not make the workspace plugin publicly discoverable in the Plugins Directory. Workspace publishing requires admin permission and may be disabled by workspace policy.
 
 ### Skills-only upload package
 
@@ -94,23 +94,23 @@ Public submission requires the appropriate OpenAI Platform permission and verifi
 
 ## Install over the network for developer clients
 
-No installer script or local repository checkout is required. The plugin host downloads this private repository from GitHub and installs every skill in `skills/`.
-
-Your Git credentials must have access to `NoIr143/AI-skills` because the repository is private.
+No installer script or local repository checkout is required. The plugin host downloads this public repository from GitHub and installs every skill in `skills/`.
 
 ### Codex CLI
 
 Add this repository as a marketplace:
 
 ```bash
-codex plugin marketplace add NoIr143/AI-skills --ref main
+codex plugin marketplace add https://github.com/NoIr143/AI-skills.git --ref main
 ```
 
-Install the skill bundle:
+Install the skill bundle from the interactive plugin browser:
 
 ```bash
-codex plugin add ai-skills@noir143-ai-skills
+codex
 ```
+
+Then enter `/plugins`, select the **NoIr143 AI Skills** marketplace, and install **AI Skills**.
 
 Refresh after repository updates:
 

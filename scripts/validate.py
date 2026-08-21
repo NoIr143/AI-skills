@@ -59,8 +59,13 @@ def validate_platform_manifests() -> list[str]:
         marketplace_plugin = matching_codex_plugins[0]
         source = marketplace_plugin.get("source", {})
         policy = marketplace_plugin.get("policy", {})
-        if source != {"source": "local", "path": "./"}:
-            errors.append("Marketplace must load the repository-root plugin")
+        expected_source = {
+            "source": "url",
+            "url": "https://github.com/NoIr143/AI-skills.git",
+            "ref": "main",
+        }
+        if source != expected_source:
+            errors.append("Marketplace must load the repository-root plugin from GitHub")
         if policy.get("installation") != "AVAILABLE":
             errors.append("Marketplace installation policy must be AVAILABLE")
         if not policy.get("authentication"):
