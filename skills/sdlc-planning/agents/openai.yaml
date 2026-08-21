@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDLC Planning"
+  short_description: "Plan scope, roles, schedule, risks, and cost"
+  default_prompt: "Use $sdlc-planning to create an evidence-based planning baseline for this software project."
