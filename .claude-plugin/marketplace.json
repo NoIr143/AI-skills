@@ -1,0 +1,22 @@
+{
+  "name": "noir143-ai-skills",
+  "owner": {
+    "name": "NoIr143"
+  },
+  "metadata": {
+    "description": "Private collection of personal AI skills."
+  },
+  "plugins": [
+    {
+      "name": "ai-skills",
+      "displayName": "AI Skills",
+      "description": "Personal reusable workflows for backend engineering and software development.",
+      "author": {
+        "name": "NoIr143"
+      },
+      "repository": "https://github.com/NoIr143/AI-skills",
+      "source": "./"
+    }
+  ]
+}
+
