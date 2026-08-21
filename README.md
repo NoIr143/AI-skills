@@ -5,8 +5,10 @@ Personal, reusable skills for AI coding agents. Each skill lives in `skills/<ski
 ## Repository layout
 
 ```text
+.agents/plugins/        Codex marketplace catalog
+.claude-plugin/         Claude Code marketplace metadata
+.codex-plugin/          Codex plugin metadata
 skills/                 Reusable skill folders
-scripts/install.sh      Install one or all skills
 scripts/validate.py     Validate every skill
 manifest.json           Repository metadata
 ```
@@ -38,31 +40,44 @@ Optional folders are `agents/`, `scripts/`, `references/`, and `assets/`.
 python3 scripts/validate.py
 ```
 
-## Install
+## Install over the network
 
-Install all skills for Codex:
+No installer script or local repository checkout is required. The plugin host downloads this private repository from GitHub and installs every skill in `skills/`.
 
-```bash
-bash scripts/install.sh codex
-```
+Your Git credentials must have access to `NoIr143/AI-skills` because the repository is private.
 
-Install selected skills:
+### Codex CLI
 
-```bash
-bash scripts/install.sh codex review-code-changes understand-ticket
-```
-
-Codex uses `$HOME/.agents/skills` for user-level skills. The installer creates symbolic links, so pulling repository updates also updates installed skills.
-
-Claude Code can use the same skill source through an adapter target:
+Add this repository as a marketplace:
 
 ```bash
-bash scripts/install.sh claude
+codex plugin marketplace add NoIr143/AI-skills --ref main
 ```
 
-Override either destination when necessary:
+Install the skill bundle:
 
 ```bash
-AI_SKILLS_TARGET_DIR=/custom/path bash scripts/install.sh codex
+codex plugin add ai-skills@noir143-ai-skills
 ```
 
+Refresh after repository updates:
+
+```bash
+codex plugin marketplace upgrade noir143-ai-skills
+```
+
+You can also run `/plugins` inside Codex and install `AI Skills` from the `NoIr143 AI Skills` marketplace.
+
+### Claude Code
+
+Add the same GitHub repository as a marketplace:
+
+```bash
+/plugin marketplace add NoIr143/AI-skills
+```
+
+Install the bundle:
+
+```bash
+/plugin install ai-skills@noir143-ai-skills
+```
