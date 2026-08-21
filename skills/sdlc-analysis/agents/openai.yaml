@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDLC Analysis"
+  short_description: "Elicit requirements and create a traceable SRS"
+  default_prompt: "Use $sdlc-analysis to gather detailed requirements and create a verifiable Software Requirements Specification."
