@@ -19,6 +19,7 @@ def read_json(path: Path) -> dict:
 def validate_platform_manifests() -> list[str]:
     errors: list[str] = []
     codex = read_json(ROOT / ".codex-plugin" / "plugin.json")
+    codex_marketplace = read_json(ROOT / ".agents" / "plugins" / "marketplace.json")
     claude = read_json(ROOT / ".claude-plugin" / "plugin.json")
     claude_marketplace = read_json(ROOT / ".claude-plugin" / "marketplace.json")
 
@@ -28,6 +29,44 @@ def validate_platform_manifests() -> list[str]:
         errors.append("Codex and Claude Code plugin versions must match")
     if codex.get("skills") != "./skills/":
         errors.append("Codex plugin must load the shared ./skills/ directory")
+
+    author_name = codex.get("author", {}).get("name")
+    interface = codex.get("interface", {})
+    required_interface = {
+        "displayName",
+        "shortDescription",
+        "longDescription",
+        "developerName",
+        "category",
+        "capabilities",
+        "defaultPrompt",
+    }
+    missing_interface = sorted(required_interface - set(interface))
+    if missing_interface:
+        errors.append(
+            "ChatGPT install metadata is missing: " + ", ".join(missing_interface)
+        )
+    if not author_name or interface.get("developerName") != author_name:
+        errors.append("Codex author.name and interface.developerName must match")
+
+    codex_plugins = codex_marketplace.get("plugins", [])
+    matching_codex_plugins = [
+        plugin for plugin in codex_plugins if plugin.get("name") == codex.get("name")
+    ]
+    if len(matching_codex_plugins) != 1:
+        errors.append("ChatGPT/Codex marketplace must expose the plugin exactly once")
+    else:
+        marketplace_plugin = matching_codex_plugins[0]
+        source = marketplace_plugin.get("source", {})
+        policy = marketplace_plugin.get("policy", {})
+        if source != {"source": "local", "path": "./"}:
+            errors.append("Marketplace must load the repository-root plugin")
+        if policy.get("installation") != "AVAILABLE":
+            errors.append("Marketplace installation policy must be AVAILABLE")
+        if not policy.get("authentication"):
+            errors.append("Marketplace authentication policy is required")
+        if not marketplace_plugin.get("category"):
+            errors.append("Marketplace category is required")
 
     plugins = claude_marketplace.get("plugins", [])
     matching_plugins = [plugin for plugin in plugins if plugin.get("name") == claude.get("name")]
