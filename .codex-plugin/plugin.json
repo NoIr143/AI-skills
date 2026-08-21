@@ -1,0 +1,7 @@
+{
+  "name": "ai-skills",
+  "version": "0.1.0",
+  "description": "Personal reusable workflows for backend engineering and software development.",
+  "skills": "./skills/"
+}
+
