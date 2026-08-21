@@ -56,6 +56,7 @@ python3 scripts/validate.py
 |---|---|---|---|
 | Generate PR Description | `$generate-pr-description` | `/ai-skills:generate-pr-description` | Produce a verified PR description from a diff. |
 | SDLC Planning | `$sdlc-planning` | `/ai-skills:sdlc-planning` | Define scope, goals, roles, estimates, risks, governance, and project readiness. |
+| SDLC Analysis | `$sdlc-analysis` | `/ai-skills:sdlc-analysis` | Gather detailed requirements and produce a traceable, verifiable SRS. |
 
 ## Install over the network
 
