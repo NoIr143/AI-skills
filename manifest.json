@@ -2,6 +2,11 @@
   "schema_version": 1,
   "repository": "NoIr143/AI-skills",
   "skills_directory": "skills",
-  "skills": []
+  "skills": [
+    {
+      "name": "generate-pr-description",
+      "path": "skills/generate-pr-description",
+      "description": "Generate a verified, copy-paste-ready PR description from a commit or branch diff."
+    }
+  ]
 }
-
