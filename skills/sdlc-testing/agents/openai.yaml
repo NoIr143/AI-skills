@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDLC Testing"
+  short_description: "Test quality, security, and performance"
+  default_prompt: "Use $sdlc-testing to test the implemented software for functional defects, security vulnerabilities, and performance problems with reproducible evidence."
