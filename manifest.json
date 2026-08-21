@@ -27,6 +27,11 @@
       "name": "sdlc-coding",
       "path": "skills/sdlc-coding",
       "description": "Implement approved requirements and system design as working, secure, tested, traceable production code."
+    },
+    {
+      "name": "sdlc-testing",
+      "path": "skills/sdlc-testing",
+      "description": "Test implemented software for functional defects, security vulnerabilities, performance regressions, and unmet quality criteria."
     }
   ]
 }
