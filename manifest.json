@@ -17,6 +17,11 @@
       "name": "sdlc-analysis",
       "path": "skills/sdlc-analysis",
       "description": "Gather, analyze, validate, and document detailed functional and quality requirements in a traceable Software Requirements Specification."
+    },
+    {
+      "name": "sdlc-design",
+      "path": "skills/sdlc-design",
+      "description": "Map and evaluate system architecture, user interfaces, data models, and integration contracts from an approved requirements baseline."
     }
   ]
 }
