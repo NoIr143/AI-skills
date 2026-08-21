@@ -22,6 +22,11 @@
       "name": "sdlc-design",
       "path": "skills/sdlc-design",
       "description": "Map and evaluate system architecture, user interfaces, data models, and integration contracts from an approved requirements baseline."
+    },
+    {
+      "name": "sdlc-coding",
+      "path": "skills/sdlc-coding",
+      "description": "Implement approved requirements and system design as working, secure, tested, traceable production code."
     }
   ]
 }
