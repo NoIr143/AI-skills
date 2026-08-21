@@ -50,6 +50,13 @@ When publishing a change, bump the version in both `.codex-plugin/plugin.json` a
 python3 scripts/validate.py
 ```
 
+## Available skills
+
+| Skill | Codex | Claude Code | Purpose |
+|---|---|---|---|
+| Generate PR Description | `$generate-pr-description` | `/ai-skills:generate-pr-description` | Produce a verified PR description from a diff. |
+| SDLC Planning | `$sdlc-planning` | `/ai-skills:sdlc-planning` | Define scope, goals, roles, estimates, risks, governance, and project readiness. |
+
 ## Install over the network
 
 No installer script or local repository checkout is required. The plugin host downloads this private repository from GitHub and installs every skill in `skills/`.
