@@ -1,0 +1,20 @@
+{
+  "name": "noir143-ai-skills",
+  "interface": {
+    "displayName": "NoIr143 AI Skills"
+  },
+  "plugins": [
+    {
+      "name": "ai-skills",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    }
+  ]
+}
+
