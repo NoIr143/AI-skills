@@ -1,6 +1,39 @@
 {
   "name": "ai-skills",
-  "version": "0.7.0",
-  "description": "Portable coding workflows shared by Codex and Claude Code.",
-  "skills": "./skills/"
+  "version": "0.8.0",
+  "description": "Standards-based SDLC and code-review workflows for ChatGPT Work, Codex, and Claude Code.",
+  "author": {
+    "name": "NoIr143",
+    "url": "https://github.com/NoIr143"
+  },
+  "homepage": "https://github.com/NoIr143/AI-skills",
+  "repository": "https://github.com/NoIr143/AI-skills",
+  "keywords": [
+    "sdlc",
+    "requirements",
+    "architecture",
+    "coding",
+    "testing",
+    "pull-request"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Skills",
+    "shortDescription": "Standards-based software delivery workflows",
+    "longDescription": "Plan, analyze, design, implement, test, and document software changes through traceable workflows shared across ChatGPT Work, Codex, and Claude Code.",
+    "developerName": "NoIr143",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/NoIr143/AI-skills",
+    "defaultPrompt": [
+      "Use SDLC Planning to define the scope, goals, roles, estimates, risks, and readiness for this project.",
+      "Use SDLC Analysis to turn this project brief into a traceable Software Requirements Specification.",
+      "Use SDLC Design to map the architecture, user interfaces, data models, and integration contracts.",
+      "Use SDLC Coding to implement this approved requirement and design as tested production code.",
+      "Use SDLC Testing to check this implementation for functional, security, and performance problems."
+    ]
+  }
 }
