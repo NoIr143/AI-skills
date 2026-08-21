@@ -1,6 +1,6 @@
 {
   "name": "ai-skills",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Portable coding workflows shared by Codex and Claude Code.",
   "skills": "./skills/"
 }
