@@ -1,11 +1,11 @@
 # AI Skills
 
-One private, network-installable skill collection for both Codex and Claude Code. Each portable skill lives in `skills/<skill-name>/` and has a single `SKILL.md` source of truth.
+One private, installable skill collection for ChatGPT Work, Codex, and Claude Code. Each portable skill lives in `skills/<skill-name>/` and has a single `SKILL.md` source of truth.
 
 ## Cross-platform model
 
 - `skills/` contains the shared Agent Skills used by both platforms. Do not duplicate skill instructions in platform-specific folders.
-- `.codex-plugin/` and `.agents/plugins/` expose the shared skills to Codex.
+- `.codex-plugin/` and `.agents/plugins/` package the shared skills for ChatGPT Work and Codex.
 - `.claude-plugin/` exposes the same shared skills to Claude Code.
 - `skills/*/agents/openai.yaml` is optional Codex interface metadata. Claude Code ignores it and reads the shared `SKILL.md`.
 - Keep `SKILL.md` frontmatter portable: use only `name` and `description`. Put workflow and tool constraints in the Markdown body.
@@ -18,6 +18,7 @@ One private, network-installable skill collection for both Codex and Claude Code
 .codex-plugin/          Codex plugin metadata
 skills/                 Reusable skill folders
 scripts/validate.py     Validate every skill
+scripts/package_chatgpt_plugin.py  Build a skills-only ChatGPT upload ZIP
 manifest.json           Repository metadata
 ```
 
@@ -52,16 +53,46 @@ python3 scripts/validate.py
 
 ## Available skills
 
-| Skill | Codex | Claude Code | Purpose |
-|---|---|---|---|
-| Generate PR Description | `$generate-pr-description` | `/ai-skills:generate-pr-description` | Produce a verified PR description from a diff. |
-| SDLC Planning | `$sdlc-planning` | `/ai-skills:sdlc-planning` | Define scope, goals, roles, estimates, risks, governance, and project readiness. |
-| SDLC Analysis | `$sdlc-analysis` | `/ai-skills:sdlc-analysis` | Gather detailed requirements and produce a traceable, verifiable SRS. |
-| SDLC Design | `$sdlc-design` | `/ai-skills:sdlc-design` | Map architecture, UI, interfaces, and database models from an approved SRS. |
-| SDLC Coding | `$sdlc-coding` | `/ai-skills:sdlc-coding` | Implement approved requirements and design as secure, tested, traceable production code. |
-| SDLC Testing | `$sdlc-testing` | `/ai-skills:sdlc-testing` | Find functional, security, performance, and quality problems with reproducible evidence. |
+| Skill | ChatGPT Work | Codex | Claude Code | Purpose |
+|---|---|---|---|---|
+| Generate PR Description | `@generate-pr-description` | `$generate-pr-description` | `/ai-skills:generate-pr-description` | Produce a verified PR description from a diff. |
+| SDLC Planning | `@sdlc-planning` | `$sdlc-planning` | `/ai-skills:sdlc-planning` | Define scope, goals, roles, estimates, risks, governance, and project readiness. |
+| SDLC Analysis | `@sdlc-analysis` | `$sdlc-analysis` | `/ai-skills:sdlc-analysis` | Gather detailed requirements and produce a traceable, verifiable SRS. |
+| SDLC Design | `@sdlc-design` | `$sdlc-design` | `/ai-skills:sdlc-design` | Map architecture, UI, interfaces, and database models from an approved SRS. |
+| SDLC Coding | `@sdlc-coding` | `$sdlc-coding` | `/ai-skills:sdlc-coding` | Implement approved requirements and design as secure, tested, traceable production code. |
+| SDLC Testing | `@sdlc-testing` | `$sdlc-testing` | `/ai-skills:sdlc-testing` | Find functional, security, performance, and quality problems with reproducible evidence. |
 
-## Install over the network
+## Install and use in ChatGPT Web — Work mode
+
+ChatGPT Web loads these skills through an installed plugin. It does not install a private GitHub repository URL directly from the Work composer.
+
+### Private workspace distribution
+
+1. On a computer whose Git credentials can access this private repository, add the marketplace and install the plugin through Codex CLI or the ChatGPT desktop plugin browser:
+
+```bash
+codex plugin marketplace add NoIr143/AI-skills --ref main
+codex plugin add ai-skills@noir143-ai-skills
+```
+
+2. As a ChatGPT workspace admin, open [ChatGPT Plugins](https://chatgpt.com/plugins), select **Personal**, open the **AI Skills** menu, choose **Publish**, and select the workspace roles that may use it.
+3. Start a new ChatGPT Web **Work** chat, type `@`, and choose a bundled skill such as `@sdlc-planning`.
+
+Publishing this way keeps the plugin inside the selected ChatGPT workspace. It does not publish the private repository to the public Plugins Directory. Workspace publishing requires admin permission and may be disabled by workspace policy.
+
+### Skills-only upload package
+
+Build the deterministic ZIP accepted by the OpenAI plugin submission portal:
+
+```bash
+python3 scripts/package_chatgpt_plugin.py
+```
+
+The output is `dist/ai-skills-<version>.zip`. GitHub Actions also attaches the same package to every validation run. In the submission portal, choose **Create plugin → Skills only**, upload the ZIP, review the normalized manifest, test every skill, and complete the required listing and review fields.
+
+Public submission requires the appropriate OpenAI Platform permission and verified developer or business identity. It is not required for private workspace publishing.
+
+## Install over the network for developer clients
 
 No installer script or local repository checkout is required. The plugin host downloads this private repository from GitHub and installs every skill in `skills/`.
 

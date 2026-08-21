@@ -4,13 +4,13 @@
     "name": "NoIr143"
   },
   "metadata": {
-    "description": "Private cross-platform skill collection for Codex and Claude Code."
+    "description": "Private cross-platform skill collection for ChatGPT Work, Codex, and Claude Code."
   },
   "plugins": [
     {
       "name": "ai-skills",
       "displayName": "AI Skills",
-      "description": "Portable coding workflows shared by Codex and Claude Code.",
+      "description": "Standards-based SDLC and code-review workflows for ChatGPT Work, Codex, and Claude Code.",
       "author": {
         "name": "NoIr143"
       },

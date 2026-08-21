@@ -1,8 +1,8 @@
 {
   "name": "ai-skills",
   "displayName": "AI Skills",
-  "version": "0.7.0",
-  "description": "Portable coding workflows shared by Codex and Claude Code.",
+  "version": "0.8.0",
+  "description": "Standards-based SDLC and code-review workflows for ChatGPT Work, Codex, and Claude Code.",
   "author": {
     "name": "NoIr143"
   },

@@ -21,3 +21,9 @@ jobs:
       - run: python3 -m json.tool .agents/plugins/marketplace.json >/dev/null
       - run: python3 -m json.tool .claude-plugin/plugin.json >/dev/null
       - run: python3 -m json.tool .claude-plugin/marketplace.json >/dev/null
+      - run: python3 scripts/package_chatgpt_plugin.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ai-skills-chatgpt-${{ github.sha }}
+          path: dist/ai-skills-*.zip
+          if-no-files-found: error
