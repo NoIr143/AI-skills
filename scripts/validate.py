@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -9,6 +10,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = ROOT / "skills"
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+
+def read_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def validate_platform_manifests() -> list[str]:
+    errors: list[str] = []
+    codex = read_json(ROOT / ".codex-plugin" / "plugin.json")
+    claude = read_json(ROOT / ".claude-plugin" / "plugin.json")
+    claude_marketplace = read_json(ROOT / ".claude-plugin" / "marketplace.json")
+
+    if codex.get("name") != claude.get("name"):
+        errors.append("Codex and Claude Code plugin names must match")
+    if codex.get("version") != claude.get("version"):
+        errors.append("Codex and Claude Code plugin versions must match")
+    if codex.get("skills") != "./skills/":
+        errors.append("Codex plugin must load the shared ./skills/ directory")
+
+    plugins = claude_marketplace.get("plugins", [])
+    matching_plugins = [plugin for plugin in plugins if plugin.get("name") == claude.get("name")]
+    if len(matching_plugins) != 1 or matching_plugins[0].get("source") != "./":
+        errors.append("Claude Code marketplace must expose the repository-root plugin")
+
+    return errors
 
 
 def parse_frontmatter(path: Path) -> tuple[dict[str, str], list[str]]:
@@ -66,6 +92,10 @@ def main() -> int:
     skill_dirs = sorted(path for path in SKILLS_DIR.iterdir() if path.is_dir())
     failures = 0
 
+    for error in validate_platform_manifests():
+        failures += 1
+        print(f"ERROR platforms: {error}", file=sys.stderr)
+
     for skill_dir in skill_dirs:
         errors = validate_skill(skill_dir)
         if errors:
@@ -76,7 +106,7 @@ def main() -> int:
             print(f"OK {skill_dir.name}")
 
     if failures:
-        print(f"Validation failed for {failures} skill(s).", file=sys.stderr)
+        print(f"Validation failed with {failures} error group(s).", file=sys.stderr)
         return 1
 
     print(f"Validated {len(skill_dirs)} skill(s).")
@@ -85,4 +115,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
