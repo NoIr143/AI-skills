@@ -59,6 +59,7 @@ python3 scripts/validate.py
 | SDLC Analysis | `$sdlc-analysis` | `/ai-skills:sdlc-analysis` | Gather detailed requirements and produce a traceable, verifiable SRS. |
 | SDLC Design | `$sdlc-design` | `/ai-skills:sdlc-design` | Map architecture, UI, interfaces, and database models from an approved SRS. |
 | SDLC Coding | `$sdlc-coding` | `/ai-skills:sdlc-coding` | Implement approved requirements and design as secure, tested, traceable production code. |
+| SDLC Testing | `$sdlc-testing` | `/ai-skills:sdlc-testing` | Find functional, security, performance, and quality problems with reproducible evidence. |
 
 ## Install over the network
 
