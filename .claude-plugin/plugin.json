@@ -1,10 +1,10 @@
 {
   "name": "ai-skills",
   "displayName": "AI Skills",
-  "description": "Personal reusable workflows for backend engineering and software development.",
+  "version": "0.2.0",
+  "description": "Portable coding workflows shared by Codex and Claude Code.",
   "author": {
     "name": "NoIr143"
   },
   "repository": "https://github.com/NoIr143/AI-skills"
 }
-

@@ -1,7 +1,6 @@
 {
   "name": "ai-skills",
-  "version": "0.1.0",
-  "description": "Personal reusable workflows for backend engineering and software development.",
+  "version": "0.2.0",
+  "description": "Portable coding workflows shared by Codex and Claude Code.",
   "skills": "./skills/"
 }
-

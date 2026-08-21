@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate PR Description"
+  short_description: "Create verified, reviewer-friendly PR summaries"
+  default_prompt: "Use $generate-pr-description to create a concise PR description from the current branch diff."

@@ -1,6 +1,14 @@
 # AI Skills
 
-Personal, reusable skills for AI coding agents. Each skill lives in `skills/<skill-name>/` and must contain a `SKILL.md` file.
+One private, network-installable skill collection for both Codex and Claude Code. Each portable skill lives in `skills/<skill-name>/` and has a single `SKILL.md` source of truth.
+
+## Cross-platform model
+
+- `skills/` contains the shared Agent Skills used by both platforms. Do not duplicate skill instructions in platform-specific folders.
+- `.codex-plugin/` and `.agents/plugins/` expose the shared skills to Codex.
+- `.claude-plugin/` exposes the same shared skills to Claude Code.
+- `skills/*/agents/openai.yaml` is optional Codex interface metadata. Claude Code ignores it and reads the shared `SKILL.md`.
+- Keep `SKILL.md` frontmatter portable: use only `name` and `description`. Put workflow and tool constraints in the Markdown body.
 
 ## Repository layout
 
@@ -33,6 +41,8 @@ description: Review commits and code changes for correctness, security, regressi
 ```
 
 Optional folders are `agents/`, `scripts/`, `references/`, and `assets/`.
+
+When publishing a change, bump the version in both `.codex-plugin/plugin.json` and `.claude-plugin/plugin.json`. The validator rejects version drift and confirms that both platforms resolve the shared `skills/` directory.
 
 ## Validate
 
@@ -68,6 +78,12 @@ codex plugin marketplace upgrade noir143-ai-skills
 
 You can also run `/plugins` inside Codex and install `AI Skills` from the `NoIr143 AI Skills` marketplace.
 
+Invoke the included PR description skill:
+
+```text
+$generate-pr-description HEAD~1
+```
+
 ### Claude Code
 
 Add the same GitHub repository as a marketplace:
@@ -80,4 +96,10 @@ Install the bundle:
 
 ```bash
 /plugin install ai-skills@noir143-ai-skills
+```
+
+Reload updated plugins when Claude Code asks you to, then invoke the namespaced skill:
+
+```text
+/ai-skills:generate-pr-description HEAD~1
 ```

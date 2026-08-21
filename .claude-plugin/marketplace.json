@@ -4,13 +4,13 @@
     "name": "NoIr143"
   },
   "metadata": {
-    "description": "Private collection of personal AI skills."
+    "description": "Private cross-platform skill collection for Codex and Claude Code."
   },
   "plugins": [
     {
       "name": "ai-skills",
       "displayName": "AI Skills",
-      "description": "Personal reusable workflows for backend engineering and software development.",
+      "description": "Portable coding workflows shared by Codex and Claude Code.",
       "author": {
         "name": "NoIr143"
       },
@@ -19,4 +19,3 @@
     }
   ]
 }
-
